@@ -1,0 +1,16 @@
+{
+    "name": "asus/lavacalactea",
+    "autoload": {
+        "psr-4": {
+            "App\\Controllers\\": "app/controllers/",
+            "App\\Models\\": "app/models/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Esteban celis",
+            "email": "celispuertae@gmail.com"
+        }
+    ],
+    "require": {}
+}

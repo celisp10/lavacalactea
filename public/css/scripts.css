@@ -1,0 +1,29 @@
+
+.container-modal {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: #0009;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.modal {
+    display: none;
+    background-color: rgb(19, 34, 56);
+    padding: 10px;
+    border-radius: 10px;
+    flex-direction: column;
+    z-index: 3;
+}
+
+.close-modal {
+    cursor: pointer;
+}

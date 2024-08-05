@@ -1,0 +1,42 @@
+
+form {
+    width: 90%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input,
+select {
+    border-radius: 6px;
+    outline: none;
+    font-size: 25px;
+    /* background-color: rgba(60, 83, 123, 0.644); */
+    background-color: #16182e;
+    border: 2px solid;
+    padding: 5px 10px;
+}
+
+::placeholder {
+    color: #fff;
+}
+
+.product-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+@media (min-width: 800px) {
+    .product-form {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+    }
+    
+    .product-form input,
+    .product-form select {
+        width: 100%;
+    }
+}

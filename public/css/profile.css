@@ -1,0 +1,38 @@
+
+.data-user {
+    margin: 50px auto;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.profile_img-user {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+
+.info-user {
+    width: 90%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    gap: 10px;
+}
+
+@media (min-width: 800px) {
+    .info-user {
+        width: 60%;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+.info-user p {
+    background-color: #16182e;
+    padding: 10px;
+    border-radius: 6px;
+}
