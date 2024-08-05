@@ -40,3 +40,20 @@ select {
         width: 100%;
     }
 }
+
+.container_log-in {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0 auto;
+    width: 500px;
+}
+
+.container_log-in .title {
+    font-size: 45px;
+    color: #3dc;
+    margin: 0;
+}
