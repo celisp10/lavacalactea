@@ -11,7 +11,7 @@
 </head>
 <body>
     <header>
-        <a class="btn r" href="../index.html">Atras</a>
+        <a class="btn r" href="../index.php">Atras</a>
     </header>
 
     <main>
@@ -29,7 +29,7 @@
                 <p>Fecha de guardado: 2024/07/22</p>
                 <p>Operador: Esteban celis</p>
                 <div class="liquidation_options">
-                    <a class="btn o" href="liquidationActualizar.html?id=1">Actualizar</a>
+                    <a class="btn o" href="liquidationActualizar.php?id=1">Actualizar</a>
                     <a class="btn r" href="#">Eliminar</a>
                 </div>
             </article>

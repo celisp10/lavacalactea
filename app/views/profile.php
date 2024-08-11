@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de liquidación</title>
 
-    <link rel="stylesheet" href="../../../public/css/style.css">
-    <link rel="stylesheet" href="../../../public/css/profile.css">
+    <link rel="stylesheet" href="../../public/css/style.css">
+    <link rel="stylesheet" href="../../public/css/profile.css">
 </head>
 <body>
     <header>
-        <a class="btn r" href="index.html">Atras</a>
+        <a class="btn r" href="index.php">Atras</a>
     </header>
 
     <main>

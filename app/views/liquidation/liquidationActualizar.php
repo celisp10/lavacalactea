@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de liquidación</title>
+    <title>Actualizar liquidación</title>
 
     <link rel="stylesheet" href="../../../public/css/style.css">
     <link rel="stylesheet" href="../../../public/css/forms.css">
@@ -12,11 +12,11 @@
 </head>
 <body>
     <header>
-        <a class="btn r" href="../index.html">Atras</a>
+        <a class="btn r" href="liquidationVer.php">Atras</a>
     </header>
 
     <main class="liquidation_form">
-        <h2 class="liquidation_title">Registrar liquidación</h2>
+        <h2 class="liquidation_title">Actulizar liquidación</h2>
 
         <div id="alerts">
 
@@ -42,11 +42,11 @@
                 <option value="1">Esteban celis</option>
             </select>
 
-            <button id="open-modal" class="btn g" type="button">Guardar registro</button>
+            <button id="open-modal" class="btn g" type="button">Actualizar registro</button>
             
             <div class="container-modal">
                 <div class="modal">
-                    <h2 class="title">¿Estas seguro de que deceas guardar el registro?</h2>
+                    <h2 class="title">¿Estas seguro de que deceas actualizar el registro?</h2>
                     <input class="btn g" type="submit" value="Actualizar registro">
                 </div>
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x close-modal" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -58,7 +58,7 @@
 
         </form>
     </main>
-
+    
     <script src="../../../public/js/forms.js"></script>
 </body>
 </html>

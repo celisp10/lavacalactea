@@ -6,11 +6,14 @@ const containerModal = document.querySelector(".container-modal");
 const modal = document.querySelector(".modal");
 const openModal = document.getElementById("open-modal");
 const closeModal = document.querySelector(".close-modal");
+const body = document.querySelector("body");
 
 // Formularios
 
 function validateInput(e) {
-    if(e.target.value.trim() === "" || e.target.value.trim() === null) {
+    if(e.target.classList.contains("no-use")) {
+        return;
+    } else if(e.target.value.trim() === "" || e.target.value.trim() === null) {
         e.target.style.border = "2px solid red";
     } else {
         e.target.style.border = "2px solid green";
@@ -46,7 +49,10 @@ form.addEventListener("submit", (e) => {
     let selectValid = true;
 
     inputs.forEach(input => {
-        if(input.value.trim() === "" || input.value.trim() === null) {
+        if(input.classList.contains("no-use")) {
+            console.log("No se usa");
+            return;
+        } else if(input.value.trim() === "" || input.value.trim() === null) {
             e.preventDefault();
             inputValid = false;
         }
@@ -79,9 +85,11 @@ selects.forEach(function(select) {
 openModal.addEventListener("click", (e) => {
     containerModal.style.display = "flex";
     modal.style.display = "flex";
+    body.style.overflow = "hidden";
 })
 
 closeModal.addEventListener("click", (e) => {
     containerModal.style.display = "none";
     modal.style.display = "none";
+    body.style.overflow = "visible";
 })

@@ -1,3 +1,40 @@
+<?php
+
+require '../../../vendor/autoload.php';
+use App\Controllers\UserController;
+
+if($_GET) {
+    $mg = isset($_GET["mg"]) ? $_GET["mg"] : NULL;
+    $mr = isset($_GET["mr"]) ? $_GET["mr"] : NULL;
+}
+
+if($_POST) {
+    
+    print_r($_POST);
+    
+    $firsName = $_POST["firsName"];
+    $secondName = $_POST["secondName"];
+    $firsLastName = $_POST["firsLastname"];
+    $secondLastName = $_POST["secondLastname"];
+    $cc = $_POST["cc"];
+    $age = $_POST["age"];
+    $email = $_POST["email"];
+    $telephone = $_POST["telephone"];
+    $position = $_POST["position"];
+    $image = $_FILES["image"];
+    $password = $_POST["password"];
+    
+    try {
+        $newUser = new UserController($firsName, $secondName, $firsLastName, $secondLastName, $cc, $age, $email, $telephone, $position, $image, $password);
+        $newUser->saveUser();
+    } catch(Exception $e) {
+        $mr = $e->getMessage();
+    }
+
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,25 +48,31 @@
 </head>
 <body>
     <header>
-        <a class="btn r" href="../index.html">Atras</a>
+        <a class="btn r" href="../index.php">Atras</a>
     </header>
 
     <main>
         <h2 class="title">Crear núevo usuario</h2>
 
         <div id="alerts">
-
+            <?php if(isset($mg)) { ?>
+                <p class="btn" style="background: green;"><?php echo $mg ?></p>
+            <?php } ?>
+            <?php if(isset($mr)) { ?>
+                <p class="btn" style="background: red;"><?php echo $mr ?></p>
+            <?php } ?>
         </div>
-
-        <form id="form" method="POST">
-
+        
+        <form id="form" method="POST" enctype="multipart/form-data">
+            <p style="font-size: 15px;">Las imagenes junto con los inputs que contengas (-) no son obligatorios.</p>
+            
             <input name="firsName" type="text" placeholder="Primer nombre">
-            <input name="secondName" type="text" placeholder="Segundo nombre">
+            <input name="secondName" class="no-use" type="text" placeholder="Segundo nombre (-)">
 
             <input name="firsLastname" type="text" placeholder="Primer apellido">
-            <input name="secondLastname" type="text" placeholder="Segundo apellido">
+            <input name="secondLastname" class="no-use" type="text" placeholder="Segundo apellido (-)">
 
-            <input name="id" type="text" placeholder="Cedula">
+            <input name="cc" type="text" placeholder="Cedula">
             
             <input name="age" type="text" placeholder="Edad">
 
@@ -40,9 +83,10 @@
             <select name="position">
                 <option value="">Seleccione cargo</option>
                 <option value="operario">Operario</option>
+                <option value="administrador">Administrador</option>
             </select>
 
-            <input name="image" type="file" accept="image/jpeg, image/png, image/gif">
+            <input name="image" class="no-use" type="file" accept="image/jpeg, image/png, image/gif">
             
             <input name="password" type="text" placeholder="Contraseña">
 
