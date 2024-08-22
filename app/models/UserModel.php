@@ -21,6 +21,7 @@ class UserModel {
     private $password;
     private $date_created;
     private $pdo;
+    private static $dbInstance;
 
     public function __construct($firsName, $secondName, $firsLastName, $secondLastName, $cc, $age, $email, $telephone, $position, $image, $password) {
         $this->firsName = $firsName;
@@ -64,5 +65,16 @@ class UserModel {
         } catch(\Exception $e) {
             echo "Error: ".$e->getMessage();
         }
+    }
+
+    public static function getAllUsers() {
+        self::$dbInstance = new Database;
+        $pdo = self::$dbInstance->getPDO();
+
+        $stmt = $pdo->prepare("SELECT id,firs_name,firs_lastname FROM users WHERE position = 'operator'");
+        $stmt->execute();
+        $resultado = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+        return $resultado;
     }
 }

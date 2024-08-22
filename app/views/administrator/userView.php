@@ -10,7 +10,7 @@ if($_GET) {
 
 if($_POST) {
     
-    print_r($_POST);
+    // print_r($_POST);
     
     $firsName = $_POST["firsName"];
     $secondName = $_POST["secondName"];
@@ -21,7 +21,7 @@ if($_POST) {
     $email = $_POST["email"];
     $telephone = $_POST["telephone"];
     $position = $_POST["position"];
-    $image = $_FILES["image"];
+    $image = isset($_FILES["image"]) ? $_FILES["image"] : NULL;
     $password = $_POST["password"];
     
     try {
@@ -82,8 +82,8 @@ if($_POST) {
             
             <select name="position">
                 <option value="">Seleccione cargo</option>
-                <option value="operario">Operario</option>
-                <option value="administrador">Administrador</option>
+                <option value="operator">Operario</option>
+                <option value="adminitrator">Administrador</option>
             </select>
 
             <input name="image" class="no-use" type="file" accept="image/jpeg, image/png, image/gif">

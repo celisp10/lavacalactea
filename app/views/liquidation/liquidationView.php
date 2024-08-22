@@ -4,8 +4,11 @@ require '../../../vendor/autoload.php';
 
 use App\Controllers\LiquidationController;
 use App\Controllers\ProductController;
+use App\Controllers\UserController;
 
 $allProducts = ProductController::getAllProducts();
+
+$allOperators = UserController::getAllUsers();
 
 if($_GET) {
     $mg = isset($_GET["mg"]) ? $_GET["mg"] : NULL;
@@ -19,19 +22,10 @@ if($_POST) {
     $farmer = $_POST["farmer"];
     $farm = $_POST["farm"];
     $id_operator = $_POST["operator"];
-
-    try {
-        $productPrice = ProductController::getProduct($id_product);
-        print_r($productPrice);
-    } catch(Exception $e) {
-        $mr = $e->getMessage();
-    }
-
-    $total_price = $productPrice["price"] * $quantity_liters;
     
     try {
-        $liquidation = new LiquidationController();
-        $liquidation->saveLiquidation($id_product, $total_price, $quantity_liters, $farmer, $farm, $id_operator);
+        $liquidation = new LiquidationController;
+        $liquidation->saveLiquidation($id_product, $quantity_liters, $farmer, $farm, $id_operator);
     } catch(Exception $e) {
         $mr = $e->getMessage();
     }
@@ -86,7 +80,9 @@ if($_POST) {
 
             <select name="operator" id="">
                 <option value="">Selecciona el operador que le corresponde el registro</option>
-                <option value="1">Esteban celis</option>
+                <?php foreach($allOperators as $operator) { ?>
+                    <option value="<?php echo $operator["id"] ?>"><?php echo $operator["firs_name"]." ".$operator["firs_lastname"]; ?></option>
+                <?php } ?>
             </select>
 
             <button id="open-modal" class="btn g" type="button">Guardar registro</button>

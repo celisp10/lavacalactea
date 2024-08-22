@@ -15,26 +15,30 @@ class UserController {
     private $email;
     private $telephone;
     private $position;
-    private $image;
+    private $image = NULL;
     private $tmpName;
     private $password;
     private $pdo;
-    private static $userImageDefault = 'sin-foto.jpg';
+    private $saveImage;
+    private static $userImageDefault = 'image-default.jpg';
 
     public function __construct($firstName, $secondName, $firstLastName, $secondLastName, $cc, $age, $email, $telephone, $position, $image, $password) {
         if(empty($firstName) or empty($firstLastName)  or empty($cc) or empty($age) or empty($email) or empty($telephone) or empty($position) or empty($password)) {
             throw new \Exception("Todos los campos deben estar llenos excepto seg apellido, seg nombre y la foto");
         }
 
-        if(!$image) {
+        if(empty($image) or $image["error"] > 0) {
             $this->image = self::$userImageDefault;
+            $this->saveImage = false;
         } else {
             $this->tmpName = $image["tmp_name"];
             $time = time();
             $nameImage = $time.$image["name"];
             $this->image = $nameImage;
-            $saveImage = true;
+            $this->saveImage = true;
         }
+
+        print_r($this->image);
 
         $this->firstName = $firstName;
         $this->secondName = $secondName;
@@ -53,13 +57,19 @@ class UserController {
             $newUser = new UserModel($this->firstName, $this->secondName, $this->firstLastName, $this->secondLastName, $this->cc, $this->age, $this->email, $this->telephone, $this->position, $this->image, $this->password);
             $newUser->saveUser();
 
-            if($saveImage) {
-                move_uploaded_file($this->tmpName, "../../public/img/".$this->image);
+            if($this->saveImage) {
+                $targetDir = __DIR__."../../../public/img/";
+                move_uploaded_file($this->tmpName, $targetDir.$this->image);
             }
 
             header("location:userView.php?mg=Usuario agregado correctamente");
         } catch(\Exception $e) {
             echo "Error: ".$e->getMessage();
         }
+    }
+
+    public static function getAllUsers() {
+        $users = UserModel::getAllUsers();
+        return $users;
     }
 }
