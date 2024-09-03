@@ -1,7 +1,12 @@
 <?php
 
+include '../../../configs/session.php';
 require '../../../vendor/autoload.php';
 use App\Controllers\ProductController;
+
+$products = ProductController::getAllProducts();
+
+// print_r($products);
 
 if($_GET) {
     $mg = isset($_GET["mg"]) ? $_GET["mg"] : NULL;
@@ -36,7 +41,7 @@ if($_POST) {
 <body>
 
     <header>
-        <a class="btn r" href="../index.php">Atras</a>
+        <a class="btn r" href="../start/index.php">Atras</a>
     </header>
 
     <main>
@@ -72,6 +77,32 @@ if($_POST) {
             </div>
     
         </form>
+
+        <section class="products-list">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th>Fecha</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($products as $product) { ?>
+                        <tr>
+                            <td><?php echo $product["name"] ?></td>
+                            <td><?php echo $product["price"] ?></td>
+                            <td><?php echo $product["date_created"] ?></td>
+                            <td>
+                                <a class="btn o" href="?id=<?php echo $product["id"]; ?>">Actualizar</a>
+                                <a class="btn r" href="?id=<?php echo $product["id"]; ?>">Eliminar</a>
+                            </td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+        </section>
     </main>
 
 

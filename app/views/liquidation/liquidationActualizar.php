@@ -1,5 +1,7 @@
 <?php
 
+include '../../../configs/session.php';
+
 if(!$_GET["id"]) {
     header("location:../index.php");
 }
@@ -11,7 +13,7 @@ use App\Controllers\ProductController;
 use App\Controllers\UserController;
 
 $allProducts = ProductController::getAllProducts();
-$allOperators = UserController::getAllUsers();
+$allOperators = UserController::getAllOperators();
 
 if($_GET) {
     $mg = isset($_GET["mg"]) ? $_GET["mg"] : NULL;

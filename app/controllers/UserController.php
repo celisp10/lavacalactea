@@ -38,7 +38,7 @@ class UserController {
             $this->saveImage = true;
         }
 
-        print_r($this->image);
+        // print_r($this->image);
 
         $this->firstName = $firstName;
         $this->secondName = $secondName;
@@ -68,8 +68,38 @@ class UserController {
         }
     }
 
-    public static function getAllUsers() {
-        $users = UserModel::getAllUsers();
+    public static function getAllOperators() {
+        $users = UserModel::getAllOperators();
         return $users;
+    }
+
+    public static function getUser($id) {
+        $user = UserModel::getUser($id);
+        if(!$user) {
+            throw new \Exception("Usuario no encontrado u ocurrió un error");
+        }
+        return $user;
+    }
+
+    public static function login($email, $password) {
+        
+        $user = UserModel::login($email);
+        if(!$user) {
+            throw new \Exception("El correo no se encuentra registrado");
+        }
+
+        $verifyPassword = password_verify($password, $user["password"]);
+
+        if(!$verifyPassword) {
+            throw new \Exception("La contraseña es incorrecta");
+        }
+
+        session_start();
+
+        $_SESSION["id"] = $user["id"];
+        
+        $_SESSION["position"] = $user["position"];
+        
+        header("location:../start/index.php");
     }
 }

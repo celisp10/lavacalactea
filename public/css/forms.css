@@ -57,3 +57,31 @@ select {
     color: #3dc;
     margin: 0;
 }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #2b2e49;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #1d1f32;
+    color: white;
+}
+    
+tr:hover {
+    background-color: #36395b;
+}
+
+caption {
+    caption-side: top;
+    font-size: 1.5em;
+    padding: 10px;
+}

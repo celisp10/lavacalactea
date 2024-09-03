@@ -1,5 +1,6 @@
 <?php
 
+include '../../../configs/session.php';
 require '../../../vendor/autoload.php';
 
 use App\Controllers\LiquidationController;
@@ -8,7 +9,7 @@ use App\Controllers\UserController;
 
 $allProducts = ProductController::getAllProducts();
 
-$allOperators = UserController::getAllUsers();
+$allOperators = UserController::getAllOperators();
 
 if($_GET) {
     $mg = isset($_GET["mg"]) ? $_GET["mg"] : NULL;
@@ -46,7 +47,7 @@ if($_POST) {
 </head>
 <body>
     <header>
-        <a class="btn r" href="../index.php">Atras</a>
+        <a class="btn r" href="../start/index.php">Atras</a>
     </header>
 
     <main class="liquidation_form">

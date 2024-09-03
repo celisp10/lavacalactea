@@ -75,4 +75,17 @@ class LiquidationModel {
         $stmt = $pdo->prepare("UPDATE liquidations SET id_product = $id_product, total_price = $total_price, quantity_liters = $quantity_liters, farmer = '$farmer', farm = '$farm', date_update = '$date_update' WHERE id = $id");
         $stmt->execute();
     }
+
+    public static function deleteLiquidation($id) {
+        self::$dbInstance = new Database;
+        $pdo = self::$dbInstance->getPDO();
+
+        $stmt = $pdo->prepare("DELETE FROM liquidations WHERE id = :id");
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+
+        if(!$stmt) {
+            throw new \Exception("Error al intentar eliminar el registro");
+        }
+    }
 }

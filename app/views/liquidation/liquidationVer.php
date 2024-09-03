@@ -1,8 +1,20 @@
 <?php
+
+include '../../../configs/session.php';
+
 require '../../../vendor/autoload.php';
 use App\Controllers\LiquidationController;
 
-$liquidations = LiquidationController::getAllLiquidations();
+try {
+    $liquidations = LiquidationController::getAllLiquidations();
+} catch (\Exception $e) {
+    $mg = $e->getMessage();
+}
+
+if($_GET) {
+    $mg = isset($_GET["mg"]) ? $_GET["mg"] : NULL;
+    $mr = isset($_GET["mr"]) ? $_GET["mr"] : NULL;
+}
 
 ?>
 
@@ -17,48 +29,50 @@ $liquidations = LiquidationController::getAllLiquidations();
     <link rel="stylesheet" href="../../../public/css/forms.css">
     <link rel="stylesheet" href="../../../public/css/liquidation.css">
     <link rel="stylesheet" href="../../../public/css/scripts.css">
+    <link rel="stylesheet" href="../../../public/css/modalRegisters.css">
 </head>
 <body>
     <header>
-        <a class="btn r" href="../index.php">Atras</a>
+        <a class="btn r" href="../start/index.php">Atras</a>
     </header>
 
     <main>
+
+        <div id="alerts">
+            <?php if(isset($mg)) { ?>
+                <p class="btn" style="background: green;"><?php echo $mg ?></p>
+            <?php } ?>
+            <?php if(isset($mr)) { ?>
+                <p class="btn" style="background: red;"><?php echo $mr ?></p>
+            <?php } ?>
+        </div>
+
         <h2 class="liquidation_title">Registros de liquidación</h2>
 
         <section class="liquidation_registers">
             <!-- Start register -->
-            <?php foreach($liquidations as $liquidation) { ?>
-            <article class="liquidation_register">
-                <h3>Id: <?php echo $liquidation["id"] ?></h3>
-                <p>Producto: <?php echo $liquidation["product_name"] ?></p>
-                <p>Precio total: <?php $price = number_format($liquidation["total_price"], 0, ',', '.'); echo $price ?> pesos</p>
-                <p>Cantidad en litros: <?php echo $liquidation["quantity_liters"] ?></p>
-                <p>Granjero: <?php echo $liquidation["farmer"] ?></p>
-                <p>Granja: <?php echo $liquidation["farm"] ?></p>
-                <p>Fecha de creación: <?php echo $liquidation["date_created"] ?></p>
-                <p>Ultima actualización: <?php echo isset($liquidation["date_update"]) ? $liquidation["date_update"] : "Ninguna"; ?></p>
-                <p>Operador: <?php echo $liquidation["operator_first_name"]." ".$liquidation["operator_first_lastname"] ?></p>
-                <div class="liquidation_options">
-                    <a class="btn o" href="liquidationActualizar.php?id=<?php echo $liquidation["id"] ?>">Actualizar</a>
-                    <button id="open-modal" class="btn r" type="button">Eliminar</button>
-                    
-                    <!-- Modal -->
-                    <div class="container-modal">
-                        <div class="modal">
-                            <h2 class="title">¿Estas seguro de que deceas actualizar el registro?</h2>
-                            <input class="btn g" type="submit" value="Actualizar registro">
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x close-modal" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                            <path d="M18 6l-12 12" />
-                            <path d="M6 6l12 12" />
-                        </svg>
-                    </div>
-                    <!-- Modal -->
+            <?php if(!empty($liquidations)) { ?>
+                <?php foreach($liquidations as $liquidation) { ?>
+                <article class="liquidation_register">
+                    <h3>Id: <?php echo $liquidation["id"] ?></h3>
+                    <p>Producto: <?php echo $liquidation["product_name"] ?></p>
+                    <p>Precio total: <?php $price = number_format($liquidation["total_price"], 0, ',', '.'); echo $price ?> pesos</p>
+                    <p>Cantidad en litros: <?php echo $liquidation["quantity_liters"] ?></p>
+                    <p>Granjero: <?php echo $liquidation["farmer"] ?></p>
+                    <p>Granja: <?php echo $liquidation["farm"] ?></p>
+                    <p>Fecha de creación: <?php echo $liquidation["date_created"] ?></p>
+                    <p>Ultima actualización: <?php echo isset($liquidation["date_update"]) ? $liquidation["date_update"] : "Ninguna"; ?></p>
+                    <p>Operador: <?php echo $liquidation["operator_first_name"]." ".$liquidation["operator_first_lastname"] ?></p>
+                    <div class="liquidation_options">
+                        <a class="btn o <?php if($_SESSION["position"] == "operator") echo $_SESSION["position"] ?>" href="liquidationActualizar.php?id=<?php echo $liquidation["id"] ?>">Actualizar</a>
 
-                </div>
-            </article>
+                        <a class="btn r <?php if($_SESSION["position"] == "operator") echo $_SESSION["position"] ?>" href="deleteLiquidation.php?id=<?php echo $liquidation["id"] ?>">Eliminar</a>
+
+                    </div>
+                </article>
+                <?php } ?>
+            <?php } else { ?>
+                <p class="title"><?php echo "No se encontraron resultados" ?></p>
             <?php } ?>
             <!-- End register -->
         </section>

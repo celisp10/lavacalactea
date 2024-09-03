@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Playwrite+FR+Moderne:wght@100..400&family=Roboto_old:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 /* Variales */
 :root {
-    --main-font: "Roboto_old", sans-serif;
+    /* --main-font: "Roboto_old", sans-serif; */
+    --main-font: "Lato", sans-serif;
     --cursive-font: "Playwrite FR Moderne", cursive;
 }
 
@@ -85,6 +87,7 @@ header {
     align-items: center;
     padding: 10px;
     background-color: #2b2e49;
+    border-bottom: 2px solid #3e4366;
 }
 
 header nav {
@@ -124,7 +127,7 @@ header nav {
 }
 
 .options {
-    margin: 0 30px;
+    margin: 0 150px;
     display: grid;
     grid-template-columns: repeat(1,1fr);
     gap: 20px;
@@ -176,4 +179,18 @@ header nav {
 .btn-option:hover {
     text-decoration: none;
     background-color: #131e3b;
+}
+
+.delete-liquidation {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.products-list {
+    width: 90%;
+    margin: 50px auto;
 }

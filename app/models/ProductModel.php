@@ -13,9 +13,7 @@ class ProductModel {
     private $date_created;
     private $pdo;
     private static $dbInstance;
-
-    // private static $dbInstance;
-
+    
     public function __construct($name = NULL, $price = NULL) {
         $this->name = $name;
         $this->price = $price;
@@ -48,7 +46,7 @@ class ProductModel {
         self::$dbInstance = new Database;
         $pdo = self::$dbInstance->getPDO();
         
-        $stmt = $pdo->prepare("SELECT id,name FROM products");
+        $stmt = $pdo->prepare("SELECT * FROM products");
         $stmt->execute();
         $resultado = $stmt->fetchAll(\PDO::FETCH_ASSOC);
         $stmt->closeCursor();

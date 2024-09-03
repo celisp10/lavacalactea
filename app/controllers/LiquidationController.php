@@ -38,9 +38,6 @@ class LiquidationController {
     public static function getAllLiquidations() {
         try {
             $liquidations = LiquidationModel::getAllLiquidations();
-            if(empty($liquidations)) {
-                throw new \Exception("No se encontraron resultados o hubo un error");
-            }
             return $liquidations;
         } catch(\Exception $e) {
             echo $e->getMessage();
@@ -50,9 +47,6 @@ class LiquidationController {
     public static function getLiquidation($id) {
         try {
             $liquidations = LiquidationModel::getLiquidation($id);
-            if(empty($liquidations)) {
-                throw new \Exception("No se encontraron resultados o hubo un error");
-            }
             return $liquidations;
         } catch(\Exception $e) {
             echo $e->getMessage();
@@ -73,8 +67,15 @@ class LiquidationController {
         } catch (\Exception $e) {
             echo "No se pudo actualizar el registro: ".$e->getMessage();
         }
+    }
 
-        
+    public static function deleteLiquidation($id) {
+        try {
+            $delete = LiquidationModel::deleteLiquidation($id);
+            header("location:liquidationVer.php?mg=Registro eliminado exitosamete");
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
 }

@@ -1,5 +1,6 @@
 <?php
 
+include '../../../configs/session.php';
 require '../../../vendor/autoload.php';
 use App\Controllers\UserController;
 
@@ -48,7 +49,7 @@ if($_POST) {
 </head>
 <body>
     <header>
-        <a class="btn r" href="../index.php">Atras</a>
+        <a class="btn r" href="../start/index.php">Atras</a>
     </header>
 
     <main>
@@ -64,7 +65,7 @@ if($_POST) {
         </div>
         
         <form id="form" method="POST" enctype="multipart/form-data">
-            <p style="font-size: 15px;">Las imagenes junto con los inputs que contengas (-) no son obligatorios.</p>
+            <p style="font-size: 15px;">Las imagenes y los inputs que contengas (-) no son obligatorios.</p>
             
             <input name="firsName" type="text" placeholder="Primer nombre">
             <input name="secondName" class="no-use" type="text" placeholder="Segundo nombre (-)">
@@ -83,7 +84,7 @@ if($_POST) {
             <select name="position">
                 <option value="">Seleccione cargo</option>
                 <option value="operator">Operario</option>
-                <option value="adminitrator">Administrador</option>
+                <option value="administrator">Administrador</option>
             </select>
 
             <input name="image" class="no-use" type="file" accept="image/jpeg, image/png, image/gif">

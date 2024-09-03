@@ -7,6 +7,21 @@ const modal = document.querySelector(".modal");
 const openModal = document.getElementById("open-modal");
 const closeModal = document.querySelector(".close-modal");
 const body = document.querySelector("body");
+const indexOption = document.querySelectorAll(".option");
+const liquidationOptions = document.querySelectorAll(".liquidation_options a");
+
+indexOption.forEach(option => {
+    if(!option.classList.contains("operator") && !option.classList.contains("administrator")) {
+        option.style.display = 'none';
+    }
+})
+
+liquidationOptions.forEach(option => {
+    if(!option.classList.contains("operator") && !option.classList.contains("administrator")) {
+        option.style.display = 'none';
+    }
+})
+
 
 // Formularios
 

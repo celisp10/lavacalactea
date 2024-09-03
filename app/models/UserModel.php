@@ -67,7 +67,7 @@ class UserModel {
         }
     }
 
-    public static function getAllUsers() {
+    public static function getAllOperators() {
         self::$dbInstance = new Database;
         $pdo = self::$dbInstance->getPDO();
 
@@ -76,5 +76,27 @@ class UserModel {
         $resultado = $stmt->fetchAll(\PDO::FETCH_ASSOC);
         $stmt->closeCursor();
         return $resultado;
+    }
+
+    public static function getUser($id) {
+        self::$dbInstance = new Database;
+        $pdo = self::$dbInstance->getPDO();
+
+        $stmt = $pdo->prepare("SELECT * FROM users WHERE id = $id");
+        $stmt->execute();
+        $resultado = $stmt->fetch(\PDO::FETCH_ASSOC);
+        $stmt->closeCursor();
+        return $resultado; 
+    }
+
+    public static function login($email) {
+        self::$dbInstance = new Database;
+        $pdo = self::$dbInstance->getPDO();
+
+        $stmt = $pdo->prepare("SELECT id, email, position, password FROM users WHERE email = :email");
+        $stmt->bindParam(":email", $email);
+        $stmt->execute();
+        $user = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $user;
     }
 }
