@@ -19,3 +19,6 @@
 
 # Ignorar el archivo composer.lock
 composer.lock
+
+# Ignorar archivo innecesario
+pass.php

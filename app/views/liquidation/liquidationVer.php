@@ -5,10 +5,22 @@ include '../../../configs/session.php';
 require '../../../vendor/autoload.php';
 use App\Controllers\LiquidationController;
 
-try {
-    $liquidations = LiquidationController::getAllLiquidations();
-} catch (\Exception $e) {
-    $mg = $e->getMessage();
+if($_SESSION["position"] == "administrator") {
+    try {
+        $liquidations = LiquidationController::getAllLiquidations();
+    } catch (\Exception $e) {
+        $mg = $e->getMessage();
+    }
+} else if($_SESSION["position"] == "operator") {
+    $id = $_SESSION["id"];
+    try {
+        $liquidations = LiquidationController::getAllLiquidationsByOperator($id);
+        if(!$liquidations) {
+            $liquidations = NULL;
+        }
+    } catch (\Exception $e) {
+        $mg = $e->getMessage();
+    }
 }
 
 if($_GET) {

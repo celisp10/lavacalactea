@@ -34,24 +34,33 @@ class ProductController {
     public static function getProduct($id) {
         try {
             $product = ProductModel::getProduct($id);
-
-            if(!$product) {
-                throw new \Exception("No se encontró ningun producto o hubo un error");
-            }
-
             return $product;
         } catch(Exception $e) {
             echo 'Error al obtener el producto: '.$e->getMessage();
         }
     }
 
+    public static function updateProduct($id, $name, $price) {
+        try {
+            $updateProduct = ProductModel::updateProduct($id, $name, $price);
+            header("location:productView.php?mo=Producto actualizado con exito");
+        } catch (Exeption $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public static function deleteProduct($id) {
+        try {
+            $delete = ProductModel::deleteProduct($id);
+            header("location:productView.php?mr=Producto actualizado con exito");
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
     public static function getAllProducts() {
         try {
             $products = ProductModel::getAllProducts();
-
-            if(!$products) {
-                throw new \Exception("No se encuentran productos registrados o hubo un error");
-            }
 
             return $products;
         } catch(Exception $e) {

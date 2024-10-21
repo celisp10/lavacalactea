@@ -8,11 +8,18 @@
     gap: 20px;
 }
 
-.profile_img-user {
+.profile__container-img {
     height: 150px;
     width: 150px;
     border-radius: 50%;
     border: 3px solid #0b2d51;
+    overflow: hidden;
+}
+
+.profile_img-user {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .info-user {

@@ -55,6 +55,17 @@ class LiquidationModel {
         return $resultado;
     }
 
+    public static function getAllLiquidationsByOperator($id) {
+        self::$dbInstance = new Database;
+        $pdo = self::$dbInstance->getPDO();
+
+        $stmt = $pdo->prepare("SELECT l.*, p.name AS product_name, u.firs_name AS operator_first_name, u.firs_lastname AS operator_first_lastname
+        FROM liquidations l JOIN products p ON l.id_product = p.id JOIN users u ON l.id_operator = u.id WHERE id_operator = $id");
+        $stmt->execute();
+        $resultado = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $resultado;
+    }
+
     public static function getLiquidation($id) {
         self::$dbInstance = new Database;
         $pdo = self::$dbInstance->getPDO();

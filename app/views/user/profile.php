@@ -40,13 +40,16 @@ try {
         </div>
 
         <section class="data-user">
-            <img class="profile_img-user" src="../../../public/img/<?php echo $user["image"]; ?>" alt="img-user">
-            <p><?php echo $user["firs_name"]." ".$user["second_name"]." ".$user["firs_lastname"] ; ?></p>
+            <P>ID: <?php echo $_SESSION["id"]; ?></P>
+            <div class="profile__container-img">
+                <img class="profile_img-user" src="../../../public/img/<?php echo $user["image"]; ?>" alt="img-user">
+            </div>
+            <p><?php echo $user["firs_name"]." ".$user["second_name"]." ".$user["firs_lastname"]." ".$user["second_lastname"] ; ?></p>
         </section>
 
         <section class="info-user">
             <p>Correo: <?php echo $user["email"]; ?></p>
-            <p>Hora de ingreso: Pronto...</p>
+            <p>Hora de ingreso: <?php echo $_SESSION["login_time"]; ?></p>
             <p>Cargo: <?php echo $user["position"]; ?></p>
             <a class="btn r" href="../../../configs/closeSession.php">Cerrar sesión</a>
         </section>

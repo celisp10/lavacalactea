@@ -65,7 +65,7 @@ if($_POST) {
         </div>
         
         <form id="form" method="POST" enctype="multipart/form-data">
-            <p style="font-size: 15px;">Las imagenes y los inputs que contengas (-) no son obligatorios.</p>
+            <p style="font-size: 15px;">La IMAGEN y los CAMPOS que contengan (-) no son obligatorios.</p>
             
             <input name="firsName" type="text" placeholder="Primer nombre">
             <input name="secondName" class="no-use" type="text" placeholder="Segundo nombre (-)">
@@ -91,11 +91,11 @@ if($_POST) {
             
             <input name="password" type="text" placeholder="Contraseña">
 
-            <button id="open-modal" class="btn g" type="button">Guardar registro</button>
+            <button id="open-modal" class="btn g" type="button">Crear usuario</button>
             
             <div class="container-modal">
                 <div class="modal">
-                    <h2 class="title">¿Estas seguro de que deceas actualizar el registro?</h2>
+                    <h2 class="title">¿Estas seguro de que deceas crear este nuevo usuario?</h2>
                     <input class="btn g" type="submit" value="Actualizar registro">
                 </div>
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x close-modal" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">

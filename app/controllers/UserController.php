@@ -100,6 +100,12 @@ class UserController {
         
         $_SESSION["position"] = $user["position"];
         
+        $_SESSION["login_time"] = date('H:i:s');
+
+        $_SESSION["first_name"] = $user["firs_name"];
+        
+        $_SESSION["first_lastname"] = $user["firs_lastname"];
+
         header("location:../start/index.php");
     }
 }

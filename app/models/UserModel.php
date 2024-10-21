@@ -93,7 +93,7 @@ class UserModel {
         self::$dbInstance = new Database;
         $pdo = self::$dbInstance->getPDO();
 
-        $stmt = $pdo->prepare("SELECT id, email, position, password FROM users WHERE email = :email");
+        $stmt = $pdo->prepare("SELECT id, firs_name, firs_lastname, email, position, password FROM users WHERE email = :email");
         $stmt->bindParam(":email", $email);
         $stmt->execute();
         $user = $stmt->fetch(\PDO::FETCH_ASSOC);

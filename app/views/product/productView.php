@@ -11,6 +11,7 @@ $products = ProductController::getAllProducts();
 if($_GET) {
     $mg = isset($_GET["mg"]) ? $_GET["mg"] : NULL;
     $mr = isset($_GET["mr"]) ? $_GET["mr"] : NULL;
+    $mo = isset($_GET["mo"]) ? $_GET["mo"] : NULL;
 }
 
 if($_POST) {
@@ -54,6 +55,9 @@ if($_POST) {
             <?php if(isset($mr)) { ?>
                 <p class="btn" style="background: red;"><?php echo $mr ?></p>
             <?php } ?>
+            <?php if(isset($mo)) { ?>
+                <p class="btn" style="background: orangered;"><?php echo $mo ?></p>
+            <?php } ?>
         </div>
         
         <form id="form" method="POST">
@@ -84,7 +88,8 @@ if($_POST) {
                         <tr>
                             <th>Nombre</th>
                             <th>Precio</th>
-                            <th>Fecha</th>
+                            <th>Fecha de creación</th>
+                            <th>Fecha de actualización</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -94,9 +99,10 @@ if($_POST) {
                             <td><?php echo $product["name"] ?></td>
                             <td><?php echo $product["price"] ?></td>
                             <td><?php echo $product["date_created"] ?></td>
+                            <td><?php echo isset($product["date_update"]) ? $product["date_update"] : "Ninguna" ?></td>
                             <td>
-                                <a class="btn o" href="?id=<?php echo $product["id"]; ?>">Actualizar</a>
-                                <a class="btn r" href="?id=<?php echo $product["id"]; ?>">Eliminar</a>
+                                <a class="btn o" href="updateProduct.php?id=<?php echo $product["id"]; ?>">Actualizar</a>
+                                <!-- <a class="btn r" href="deleteProduct.php?id=<?php echo $product["id"]; ?>">Eliminar</a> -->
                             </td>
                         </tr>
                         <?php } ?>

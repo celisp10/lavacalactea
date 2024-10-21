@@ -44,6 +44,15 @@ class LiquidationController {
         }
     }
 
+    public static function getAllLiquidationsByOperator($id) {
+        try {
+            $liquidations = LiquidationModel::getAllLiquidationsByOperator($id);
+            return $liquidations;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
     public static function getLiquidation($id) {
         try {
             $liquidations = LiquidationModel::getLiquidation($id);

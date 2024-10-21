@@ -34,12 +34,35 @@ class ProductModel {
         self::$dbInstance = new Database;
         $pdo = self::$dbInstance->getPDO();
         
-        $stmt = $pdo->prepare("SELECT price FROM products WHERE id = :id");
+        $stmt = $pdo->prepare("SELECT * FROM products WHERE id = :id");
         $stmt->bindParam(":id", $id);
         $stmt->execute();
         $resultado = $stmt->fetch(\PDO::FETCH_ASSOC);
         $stmt->closeCursor();
         return $resultado;
+    }
+
+    public static function updateProduct($id, $name, $price) {
+        self::$dbInstance = new Database;
+        $pdo = self::$dbInstance->getPDO();
+
+        $date_update = date("Y/m/d");
+
+        $stmt = $pdo->prepare("UPDATE products SET name=:name, price=:price, date_update=:date_update WHERE id = :id");
+        $stmt->bindParam(":name", $name);
+        $stmt->bindParam(":price", $price);
+        $stmt->bindParam(":date_update", $date_update);
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+    }
+
+    public static function deleteProduct($id) {
+        self::$dbInstance = new Database;
+        $pdo = self::$dbInstance->getPDO();
+
+        $stmt = $pdo->prepare("DELETE FROM  products WHERE id = :id");
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
     }
     
     public static function getAllProducts() {

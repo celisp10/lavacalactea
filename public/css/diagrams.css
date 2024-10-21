@@ -1,0 +1,28 @@
+
+.container_diagrams {
+    width: 60%;
+    margin: 50px auto;
+    background-color: #272a43;
+    padding: 10px;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+    place-items: center;
+}
+
+@media (min-width: 1000px) {
+    .container_diagrams {
+        width: 80%;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+canvas {
+    background-color: #fff1;
+    max-width: 100% !important;
+    width: 620px !important;
+    height: 400px !important;
+    border-radius: 6px;
+    padding: 10px;
+}

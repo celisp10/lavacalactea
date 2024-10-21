@@ -13,6 +13,7 @@ try {
 }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,7 +33,9 @@ try {
                 <path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
                 <path d="M9 17v1a3 3 0 0 0 6 0v-1" /></svg>
             </a>
-            <a href="../user/profile.php?18"><img class="index__img-user" src="../../../public/img/<?php echo $user["image"]; ?>" alt="user-img"></a>
+            <div class="index__container-img">
+                <a href="../user/profile.php?18"><img class="index__img-user" src="../../../public/img/<?php echo $user["image"]; ?>" alt="user-img"></a>
+            </div>
         </nav>
     </header>
 
@@ -86,13 +89,24 @@ try {
             </article>
             <!-- End option -->
             <!-- Start option -->
-            <article class="option <?php if($_SESSION["position"] == "operator") echo $_SESSION["position"] ?>">
+            <article class="option <?php if($_SESSION["position"] == "administrator") echo $_SESSION["position"] ?>">
                 <div class="header-option">
                     <h3>Guardar un núevo producto</h3>
                 </div>
                 <div class="main-option">
-                    <p>Guardar los datos de un núevo producto en el sistema</p>
+                    <p>Guardar y editar los datos de un producto en el sistema</p>
                     <a class="btn-option" href="../product/productView.php">Ir</a>
+                </div>
+            </article>
+            <!-- End option -->
+            <!-- Start option -->
+            <article class="option <?php echo $_SESSION["position"] ?>">
+                <div class="header-option">
+                    <h3>Estadisticas</h3>
+                </div>
+                <div class="main-option">
+                    <p>Ver diagramas que muestren estadisticas sobre registros y productos.</p>
+                    <a class="btn-option" href="diagrams.php">Ir</a>
                 </div>
             </article>
             <!-- End option -->

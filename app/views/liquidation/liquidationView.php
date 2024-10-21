@@ -81,9 +81,8 @@ if($_POST) {
 
             <select name="operator" id="">
                 <option value="">Selecciona el operador que le corresponde el registro</option>
-                <?php foreach($allOperators as $operator) { ?>
-                    <option value="<?php echo $operator["id"] ?>"><?php echo $operator["firs_name"]." ".$operator["firs_lastname"]; ?></option>
-                <?php } ?>
+                <option value="<?php echo $_SESSION["id"]; ?>"><?php echo $_SESSION["first_name"]." ".$_SESSION["first_lastname"]; ?></option>
+                
             </select>
 
             <button id="open-modal" class="btn g" type="button">Guardar registro</button>
